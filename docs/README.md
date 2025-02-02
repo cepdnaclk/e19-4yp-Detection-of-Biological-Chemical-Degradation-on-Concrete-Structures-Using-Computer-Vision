@@ -15,12 +15,12 @@ title:
 
 - E/19/371, Shantosh M., [email](mailto:e19371@eng.pdn.ac.lk)
 - E/19/133, Harishanth A., [email](mailto:e19133@eng.pdn.ac.lk)
-- E/19/137, Name, [email](mailto:e19137@eng.pdn.ac.lk)
+- E/19/137, Hayanan T., [email](mailto:e19137@eng.pdn.ac.lk)
 
 #### Supervisors
 
-- Name, [email](mailto:name@eng.pdn.ac.lk)
-- Name, [email](mailto:name@eng.pdn.ac.lk)
+- Ms.Yasodha Vimukthi, [email](mailto:yasodhav@eng.pdn.ac.lk)
+- Dr. J. A. S. C. Jayasinghe, [email](mailto:name@eng.pdn.ac.lk)
 
 #### Table of content
 
