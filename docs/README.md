@@ -14,8 +14,8 @@ title:
 #### Team
 
 - E/19/371, Shantosh M., [email](mailto:e19371@eng.pdn.ac.lk)
-- eNumber, Name, [email](mailto:name@email.com)
-- eNumber, Name, [email](mailto:name@email.com)
+- E/19/133, Harishanth A., [email](mailto:e19133@eng.pdn.ac.lk)
+- E/19/137, Name, [email](mailto:e19137@eng.pdn.ac.lk)
 
 #### Supervisors
 
