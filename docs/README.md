@@ -15,7 +15,7 @@ title:
 
 - E/19/371, Shantosh M., [email](mailto:e19371@eng.pdn.ac.lk)
 - E/19/133, Harishanth A., [email](mailto:e19133@eng.pdn.ac.lk)
-- E/19/137, Hayanan T., [email](mailto:e19137@eng.pdn.ac.lk)
+- E/19/137, Hayanan T., [email](mailto:e19137@eng.pdn.ac.lk), [Portfolio](https://www.thecn.com/TH1357)
 
 #### Supervisors
 
