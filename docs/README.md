@@ -9,11 +9,11 @@ title:
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 
-# Project Title
+# DETECTION OF BIOLOGICAL DEGRADATION OF CONCRETE STRUCTURES USING COMPUTER VISION
 
 #### Team
 
-- eNumber, Name, [email](mailto:name@email.com)
+- E/19/371, Shantosh M., [email](mailto:e19371@eng.pdn.ac.lk)
 - eNumber, Name, [email](mailto:name@email.com)
 - eNumber, Name, [email](mailto:name@email.com)
 
