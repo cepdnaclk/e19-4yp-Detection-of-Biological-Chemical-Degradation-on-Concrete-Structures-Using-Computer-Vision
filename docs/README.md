@@ -43,6 +43,7 @@ This is a sample image, to show how to add images to your page. To learn more op
 
 
 ## Abstract
+The detection of biological degradation in concrete structures is essential for maintaining the strength and longevity of infrastructure. This research focuses on exploring the most effective methods for detecting biological degradation, including microbial, fungal, and algal growth, on concrete surfaces. The study evaluates a variety of computer vision techniques and image processing algorithms to determine their efficiency in identifying and assessing biological damage. By comparing approaches such as deep learning models, image enhancement, and pattern recognition, the research aims to identify the most accurate and reliable method for detecting biological degradation in concrete. High-resolution images captured from cameras are utilized to analyze degradation patterns, providing insights into the most optimal techniques for detecting and quantifying biological damage. The findings of this research could lead to more efficient and accurate methods for monitoring and maintaining concrete structures.
 
 ## Related works
 
