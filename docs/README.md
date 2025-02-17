@@ -20,7 +20,7 @@ title:
 #### Supervisors
 
 - Ms.Yasodha Vimukthi, [email](mailto:yasodhav@eng.pdn.ac.lk)
-- Dr. J. A. S. C. Jayasinghe, [email](mailto:name@eng.pdn.ac.lk)
+- Dr. J. A. S. C. Jayasinghe, [email](mailto:supunj@eng.pdn.ac.lk )
 
 #### Table of content
 
