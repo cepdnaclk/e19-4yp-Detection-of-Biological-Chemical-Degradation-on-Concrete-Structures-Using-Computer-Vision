@@ -1,6 +1,7 @@
 ___
-# DETECTION OF BIOLOGICAL DEGRADATION OF CONCRETE STRUCTURES USING COMPUTER VISION
+# DETECTION OF BIOLOGICAL AND CHEMICAL DEGRADATION OF CONCRETE STRUCTURES USING COMPUTER VISION
 ___
 
+Concrete structures are susceptible to both biological degradation (e.g., algae, fungi, moss) and chemical deterioration (e.g., carbonation, sulfate attack, chloride-induced corrosion), which can compromise their structural integrity over time. Traditional inspection methods are often time-consuming, labor-intensive, and subjective.  
 
-Concrete structures are often exposed to biological degradation caused by algae, fungi, and moss, which can weaken their integrity over time. Traditional inspection methods are labor-intensive and subjective. This project aims to develop a computer vision-based system to automatically detect and classify biological degradation on concrete surfaces. By leveraging deep learning techniques and image processing, the system will provide a more efficient and accurate assessment of structural health, helping to optimize maintenance efforts.
+This project aims to develop a computer vision-based system that automatically detects and classifies biological and chemical degradation on concrete surfaces. By leveraging deep learning techniques and image processing algorithms, the system will provide a more efficient and accurate assessment of structural health, enabling proactive maintenance and extending the lifespan of concrete infrastructure.
