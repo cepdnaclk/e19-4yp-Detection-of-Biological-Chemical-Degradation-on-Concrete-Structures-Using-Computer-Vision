@@ -25,13 +25,15 @@ title:
 #### Table of content
 
 1. [Abstract](#abstract)
-2. [Related works](#related-works)
-3. [Methodology](#methodology)
-4. [Experiment Setup and Implementation](#experiment-setup-and-implementation)
-5. [Results and Analysis](#results-and-analysis)
-6. [Conclusion](#conclusion)
-7. [Publications](#publications)
-8. [Links](#links)
+2. [Introduction](#introduction)
+3. [Aim and Objectives](#aim-and-objectives)
+4. [Related works](#related-works)
+5. [Methodology](#methodology)
+6. [Experiment Setup and Implementation](#experiment-setup-and-implementation)
+7. [Results and Analysis](#results-and-analysis)
+8. [Conclusion](#conclusion)
+9. [Publications](#publications)
+10. [Links](#links)
 
 ---
 
@@ -50,12 +52,44 @@ Concrete is a fundamental material in modern infrastructure, used in bridges, bu
 
 Computer vision and deep learning technologies offer high-precision damage detection for concrete structures. These advancements enable automated image analysis to identify cracks, discoloration, and degradation patterns with greater accuracy. Deep learning models, including CNN-based architectures (e.g., ResNet, EfficientNet) and object detection models (e.g., YOLO, Faster R-CNN), improve classification and detection capabilities. While existing research primarily focuses on mechanical damage such as cracks and corrosion, limited studies address biological degradation. Additionally, a comprehensive approach to chemical degradation detection is needed. This research integrates both aspects into a unified system for enhanced structural monitoring and predictive maintenance.
 
+## Aim and Objectives
+
+### Aim
+
+This research aims to develop a computer vision framework for accurate detection and quantification of biological and chemical degradation in concrete structures. By integrating deep learning and multimodal imaging techniques, the proposed system will enhance real-time structural health monitoring, improving the efficiency and accuracy of infrastructure maintenance.
+
+### Objectives
+
+#### General Objective
+
+To design and implement a deep learning-based system that utilizes computer vision and advanced imaging techniques for comprehensive detection, classification, and analysis of biological and chemical degradation in concrete structures.
+
+#### Specific Objectives
+
+1. **Dataset Development:** Collect real-world images of biological and chemical degradation from industrial sites and public datasets while employing synthetic data augmentation to enhance model generalization. Multimodal imaging techniques, such as RGB and thermal imaging, will be used to capture various degradation characteristics.
+
+2. **Deep Learning Model Implementation:** Implement and evaluate deep learning models, including CNNs for image classification, YOLO for real-time object detection, and U-Net for semantic segmentation. These models will be trained to differentiate biological growth (e.g., algae, mold) from chemical damage (e.g., sulfate attack, chloride-induced corrosion).
+
+3. **Degradation Quantification:** Develop methods for measuring degradation severity using computer vision-based feature extraction techniques. Image processing algorithms will analyze surface texture, color variations, and spectral signatures to assess damage extent, providing actionable insights for maintenance planning.
+
+4. **Real-Time Monitoring and Optimization:** Optimize AI models for real-time performance and deployment on mobile devices, drones, and embedded inspection systems. Techniques such as model pruning, quantization, and edge AI integration will be explored to ensure efficiency with minimal computational overhead.
+
+5. **Performance Evaluation and Validation:** Conduct extensive testing using real-world datasets to validate model accuracy, precision, recall, and robustness under different environmental conditions, such as lighting, moisture levels, and surface textures. Comparisons will be made against traditional inspection methods.
+
+7. **Prototype Development for Practical Application:** Develop a functional prototype with a user-friendly interface, allowing users to upload concrete surface images for degradation analysis. The system will be designed for scalability, enabling integration into existing structural health monitoring frameworks used by engineers and maintenance teams.
+
+By addressing these objectives, this research aims to transform traditional structural monitoring into an intelligent, automated, and scalable solution, enhancing the efficiency of concrete degradation assessment and long-term infrastructure sustainability.
+
 ## Related works
 
 ## Methodology
-The research methodology for developing a deep learning-based system for detecting and quantifying biological and chemical degradation in concrete structures involves several structured stages. The Figure 5.1 explained the stages encompass data collection, data pre-processing and annotation, model development, training and evaluation, and system validation. The methodology is designed to ensure the development of a robust, scalable, and efficient system for structural health monitoring.
+The research methodology for developing a deep learning-based system for detecting and quantifying biological and chemical degradation in concrete structures involves several structured stages. The below Figure explained the stages encompass data collection, data pre-processing and annotation, model development, training and evaluation, and system validation. The methodology is designed to ensure the development of a robust, scalable, and efficient system for structural health monitoring.
 
-![image](https://github.com/user-attachments/assets/79154cb2-d8fb-4270-a660-8d4bcc403369)
+<p align="center">
+  <img src="images/Methodology.drawio.png" alt="Methodology Workflow" width="600">
+</p>
+
+<p align="center"><b>Methodology Workflow:</b> Synthetic Data Integration, Deep Learning Optimization, and Multi-Metric Evaluation Framework</p>
 
 ### Data Collection
 Data collection is a crucial step in the methodology, as the quality and diversity of data directly influence the performance of deep learning models. The research begins by gathering real-world images from infrastructure sites, such as bridges, highways, and industrial buildings, where concrete degradation is common. Since existing datasets primarily focus on mechanical damage like cracks and spalling, there is a significant gap in datasets that include biological (e.g., algae, fungi) and chemical (e.g., sulfate attack, carbonation) degradation. To fill this gap, synthetic data generation techniques are employed to augment the dataset, allowing for a broader representation of degradation types. Additionally, multimodal imaging techniques are employed, including RGB imaging and thermal imaging, which are crucial for capturing detailed information on surface textures and temperature variations of the concrete surface, respectively.
