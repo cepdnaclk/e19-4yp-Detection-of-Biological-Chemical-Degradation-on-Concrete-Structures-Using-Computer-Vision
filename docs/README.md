@@ -27,13 +27,10 @@ title:
 1. [Abstract](#abstract)
 2. [Introduction](#introduction)
 3. [Aim and Objectives](#aim-and-objectives)
-4. [Related works](#related-works)
 5. [Methodology](#methodology)
-6. [Experiment Setup and Implementation](#experiment-setup-and-implementation)
-7. [Results and Analysis](#results-and-analysis)
-8. [Conclusion](#conclusion)
-9. [Publications](#publications)
-10. [Links](#links)
+6. [Conclusion](#conclusion)
+7. [Publications](#publications)
+8. [Links](#links)
 
 ---
 
@@ -80,7 +77,7 @@ To design and implement a deep learning-based system that utilizes computer visi
 
 By addressing these objectives, this research aims to transform traditional structural monitoring into an intelligent, automated, and scalable solution, enhancing the efficiency of concrete degradation assessment and long-term infrastructure sustainability.
 
-## Related works
+[//]: ## Related works
 
 ## Methodology
 The research methodology for developing a deep learning-based system for detecting and quantifying biological and chemical degradation in concrete structures involves several structured stages. The below Figure explained the stages encompass data collection, data pre-processing and annotation, model development, training and evaluation, and system validation. The methodology is designed to ensure the development of a robust, scalable, and efficient system for structural health monitoring.
@@ -108,21 +105,50 @@ The final stage of the methodology involves validating the developed system in r
 
 Through these stages, the research aims to create an accurate, scalable, and efficient  solution for the early detection of both biological and chemical degradation in concrete structures, thereby enhancing the long-term durability and maintenance of infrastructure.
 
-## Experiment Setup and Implementation
+[//]: ## Experiment Setup and Implementation
 
-## Results and Analysis
+[//]: ## Results and Analysis
 
 ## Conclusion
 This research investigates the integration of computer vision and deep learning technologies to address the challenges of detecting and quantifying both biological and chemical degradation in concrete structures. The study aims to bridge the gap in current inspection methodologies by developing a scalable solution for structural health monitoring. By incorporating advanced deep learning models, including object detection and segmentation techniques, alongside multimodal imaging data such as thermal imaging, the proposed approach enhances the accuracy of degradation detection. The use of these innovative techniques allows for the identification of surface and subsurface damage, enabling a more comprehensive understanding of the structural health of concrete. This framework not only addresses the limitations of traditional inspection methods but also offers a promising pathway to improve the efficiency and effectiveness of infrastructure maintenance, potentially leading to significant cost savings and increased longevity of concrete structures.
 
 ## Publications
-[//]: # "Note: Uncomment each once you uploaded the files to the repository"
-
-<!-- 1. [Semester 7 report](./) -->
-<!-- 2. [Semester 7 slides](./) -->
-<!-- 3. [Semester 8 report](./) -->
-<!-- 4. [Semester 8 slides](./) -->
-<!-- 5. Author 1, Author 2 and Author 3 "Research paper title" (2021). [PDF](./). -->
+1.	Ai, D., Jiang, G., Lam, S.-K., He, P. & Li, C. (2023). Computer vision framework for crack detection of civil infrastructure—A review. Engineering Applications of Artificial Intelligence, 117, 105478. https://doi.org/10.1016/j.engappai.2022.105478
+2.	A. Hafidi, B. Hilloulin, S. Boudache, U. Rejoice, and A. Loukili, "Comparison of Machine Learning Algorithms for the Prediction of the External Sulphate Attack Resistance of Blended Cements," , Milos Island, Greece, Jun. 2023, pp. 725–735.
+3.	A. N. Beskopylny, S. A. Stel’makh, E. M. Shcherban’, I. Razveeva, A. Kozhakin, B. Meskhi, A. Chernil’nik, D. Elshaeva, O. Ananova, M. Girya, T. Nurkhabinov, and N. Beskopylny, “Computer Vision Method for Automatic Detection of Microstructure Defects of Concrete,” Materials, 15(8), 2022.
+4.	A. Samantaray, B. Yang, J. E. Dietz, and B.-C. Min, “Algae Detection Using Computer Vision and Deep Learning,” Proceedings of the IEEE International Conference on Robotics and Automation, 2022.
+5.	A. Ullah, Z. Sun, H. Elahi, F. Afzal, A. Khatoon, N. Sayed, and I. Ahmad, "Experimental and Numerical Research of Paved Microcrack Using Histogram Equalization for Detection and Segmentation," Journal of Sensors, 2022, p. 2684983, Jun. 2022.
+6.	C. Chen and P. Shen, "Research on Crack Width Measurement Based on Binocular Vision and Improved DeeplabV3+," Appl. Sci., 13(5), p. 2752, Feb. 2023.
+7.	G. Dua and R. Mulaveesala, "Thermal wave imaging for non-destructive testing and evaluation of reinforced concrete structures," Insight - Non-Destructive Testing and Condition Monitoring, 60(5), pp. 252–256, May 2018.
+8.	H. Kabir, J. Wu, S. Dahal, T. Joo, and N. Garg, "Automated estimation of cementitious sorptivity via computer vision," Nature Communications, 15, article no. 9935, 2024.
+9.	J. F. Ramirez Rochac, N. Zhang, L. Thompson, and T. Oladunni, "A Data Augmentation-Assisted Deep Learning Model for High Dimensional and Highly Imbalanced Hyperspectral Imaging Data," Hulunbuir, China, 2019.
+10.	J. Im, W. Kim, S. Park, and S. Park, “Detection of Structural Damage of Infrared Thermal Image Using Computer Vision,” Journal of Building Engineering, 48, 2022.
+11.	J. Nádvorník, P. Škoda, and P. Tvrdík, "Hierarchical Semi-Sparse Cubes—Parallel Framework for Storing Multi-Modal Big Data in HDF5," IEEE Access, 11, pp. 119876–119897, Jan. 2023.
+12.	J. Wang, T. Ueda, P. Wang, Z. Li, and Y. Li, "Building damage inspection method using UAV-based data acquisition and deep learning-based crack detection," Journal of Civil Structural Health Monitoring, 15, pp. 151–171, 2025.
+13.	K. Dunphy, M. N. Fekri, K. Grolinger, and A. Sadhu, "Data Augmentation for Deep-Learning-Based Multiclass Structural Damage Detection Using Limited Information," Sensors, 22(16), p. 6193, Aug. 2022.
+14.	Krishnan, S. S. R., Karuppan, M. K. N., Khadidos, A. O., Selvarajan, S., Tandon, S. & Balusamy, B. (2025). Comparative analysis of deep learning models for crack detection in buildings. Scientific Reports, 15(1), Article 2125. https://doi.org/10.1038/s41598-025-85983-3
+15.	R. Fu, H. Xu, Z. Wang, L. Shen, M. Cao, T. Liu, and D. Novák, "Enhanced Intelligent Identification of Concrete Cracks Using Multi-Layered Image Preprocessing-Aided Convolutional Neural Networks," Sensors, 20(7), p. 2021, 2020.
+16.	Reddy, V. G. P., Tadepalli, T., & Pancharathi, R. K. (2023). "Surface imaging based non-destructive assessment of concrete deterioration using hue-saturation-intensity colour space." Construction and Building Materials, XYZ, 104651.
+17.	S. Pozzer, G. Ramos, E. R. Azar, A. Osman, A. El Refai, F. López, C. Ibarra-Castanedo, and X. Maldague, "Enhancing concrete defect segmentation using multimodal data and Siamese Neural Networks," Automation in Construction, 166, p. 105594, Oct. 2024.
+18.	S. Zhang, "The Performance and Service Life Prediction of High Performance Concrete in Sulfate and Acidic Environments," FIU Electronic Theses and Dissertations, 2015.
+19.	T. G. Mondal and G. Chen, "Artificial intelligence in civil infrastructure health monitoring—Historical perspectives, current trends, and future visions," Front. Built Environ., 8, Sept. 2022.
+20.	T. Lee, D. Kim, S. Cho, and M. O. Kim, "Advancements in Surface Coatings and Inspection Technologies for Extending the Service Life of Concrete Structures in Marine Environments: A Critical Review," Buildings, 15(3), p. 304, Mar. 2025.
+21.	T. Malche, S. Tharewal, and R. K. Dhanaraj, “Automated Damage Detection on Concrete Structures Using Computer Vision and Drone Imagery,” Sensors, 22(14), 2022.
+22.	T. Zarg, S., Pundir, P., Rathee, G., Ahlawat, S., & et al., "On Continuous Integration / Continuous Delivery for Automated Deployment of Machine Learning Models using MLOps," 2021 IEEE Fourth International Conference on Artificial Intelligence and Knowledge Engineering (AIKE), 2021.
+23.	T. Li, Y. Yu, J. Li, Y. Xia, Z. Ding, and B. Samali, "Automated damage diagnosis of concrete jack arch beam using optimized deep stacked autoencoders and multi-sensor fusion," Developments in the Built Environment, 14, p. 100128, Apr. 2023.
+24.	T. A. Mukhti, K. P. V. Robles, K.-H. Lee, and S.-H. Kee, "Evaluation of Early Concrete Damage Caused by Chloride-Induced Steel Corrosion Using a Deep Learning Approach Based on RNN for Ultrasonic Pulse Waves," Materials, 16(9), p. 3502, May 2023.
+25.	T.-H. Kim, J. E. Min, H. M. Lee, K. J. Kim, and C.-S. Yang, “Application of hyperspectral image for monitoring in coastal area with deep learning: A case study of green algae on artificial structure,” J. Mar. Sci. Eng., vol. 12, no. 11, p. 2042, 2024. [Online]. Available: https://doi.org/10.3390/jmse12112042
+26.	T. E. Dietz, A. Samantaray, B. Yang, and B.-C. Min, "Algae detection using computer vision and deep learning," preprint arXiv:1811.10847, doi: 10.48550/arXiv.1811.10847 , Nov. 2018.
+27.	T. Kukletová and I. Chromková, "Testing of algae colonization growth risk on building materials," IOP Conference Series: Materials Science and Engineering, vol. 379, p. 012041, 2018.
+28.	T. Bertovic, ``Human factors in non-destructive testing (NDT): Risks and challenges of mechanised NDT,'' Ph.D. dissertation, Technische Universität Berlin, 2015.
+29.	T. Shahrizan Jamaludin, Md Mahadi Hasan Imran, Ahmad Ali Imran Mohd Ali, “Computer Vision and Image Processing Approaches for Corrosion Detection," Journal of Marine Science and Engineering, vol. 11, no. 10, p. 1954, Oct. 2023.
+30.	W. Martínez-Molina, J. A. Guzmán-Torres, F. J. Domínguez-Mota, M. Z. Naser, G. Tinoco-Guerrero, and J. G. Tinoco-Ruíz, "Damage detection on steel-reinforced concrete produced by corrosion via YOLOv3: A detailed guide," Frontiers in Built Environment, vol. 9, Mar. 2023.
+31.	W. Al Fuhaid, A. F., Niaz, A. (2022). Carbonation and Corrosion Problems in Reinforced Concrete Structures. Buildings, 12(5), 586.
+32.	W. Martínez-Molina, J. A. Guzmán-Torres, F. J. Domínguez-Mota,, M. Z. Naser, G. Tinoco-Guerrero, and J. G. Tinoco-Ruíz, "Damage detection on steel-reinforced concrete produced by corrosion via YOLOv3: A detailed guide," Frontiers in Built Environment, vol. 9, Mar. 2023.
+33.	Y. Haddad, G. Jokhio, and A. Abu Tair, "Overview of Concrete Deterioration Due to Sulphate Attack and Comparison of Its Requirements in International Codes," in BUiD Doctoral Research Conference 2022, May 2023.
+34.	YTL Group Qatar, "Chloride attacks on concrete structures," YTL Group Qatar, [Online].Available:https://www.ctlgroupqatar.com/single-post/2019/02/02/chloride-attacks-on-concrete-structures.
+35.	Zarkham Global, "Concrete carbonation: Why should I care?," Zarkham Global, [Online]. Available: https://markhamglobal.com/news/concrete-carbonation-why-should-i-care/.
+36.	Z.V. Mohan, “Performance Analysis of Canny and Sobel Edge Detection Algorithms in Image Mining,” International Journal of Innovative Research in Computer and Communication Engineering, vol. 1, no. 8, pp. 1760–1767, Oct. 2013.
 
 
 ## Links
