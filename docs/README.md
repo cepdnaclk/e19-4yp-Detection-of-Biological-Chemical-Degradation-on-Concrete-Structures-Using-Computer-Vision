@@ -93,47 +93,64 @@ The research methodology for developing a deep learning-based system for detecti
 Data collection is a crucial step in the methodology, as the quality and diversity of data directly influence the performance of deep learning models. The research begins by gathering real-world images from infrastructure sites, such as bridges, highways, and industrial buildings, where concrete degradation is common. To address the gap in existing datasets, which primarily focus on mechanical damage like cracks and spalling, we collected real images of concrete affected by chemical degradation, specifically chloride and sulfate attacks. Additionally, we generated synthetic images for both chloride and sulfate attacks to augment the dataset, ensuring a broader representation of these degradation types. Segmentation was also performed on the real images to isolate affected areas, aiding in model training and analysis. Multimodal imaging techniques, including RGB imaging and thermal imaging, were employed to capture detailed information on surface textures and temperature variations of the concrete surface, respectively. Below are sample images showcasing real, segmented, and synthetic data for chloride and sulfate attacks:
 
 - **Chloride Attack Samples**:
-  - Real Image:  
-    ![Chloride Attack - Real Image](images/chloride_real_image.jpg)  
-  - Segmented Image:  
-    ![Chloride Attack - Segmented Image](images/chloride_segmented_image.jpg)  
-  - Synthetic Image:  
-    ![Chloride Attack - Synthetic Image](docs/images/chloride_synthetic_image.PNG)  
+  <table>
+    <tr>
+      <td><img src="images/chloride_real_image.jpg" alt="Chloride Attack - Real Image" width="300"></td>
+      <td><img src="images/chloride_segmented_image.jpg" alt="Chloride Attack - Segmented Image" width="300"></td>
+      <td><img src="images/chloride_synthetic_image.PNG" alt="Chloride Attack - Synthetic Image" width="300"></td>
+    </tr>
+    <tr>
+      <td align="center">Real Image</td>
+      <td align="center">Segmented Image</td>
+      <td align="center">Synthetic Image</td>
+    </tr>
+  </table>
 
 - **Sulfate Attack Samples**:
-  - Real Image:  
-    ![Sulfate Attack - Real Image](images/sulphate_real_image.jpg)  
-  - Segmented Image:  
-    ![Sulfate Attack - Segmented Image](images/sulphate_segmented_image.jpg)  
-  - Synthetic Image:  
-    ![Sulfate Attack - Synthetic Image](docs/images/sulphate_synthetic_image.png)
+  <table>
+    <tr>
+      <td><img src="images/sulphate_real_image.jpg" alt="Sulfate Attack - Real Image" width="300"></td>
+      <td><img src="images/sulphate_segmented_image.jpg" alt="Sulfate Attack - Segmented Image" width="300"></td>
+      <td><img src="images/sulphate_synthetic_image.png" alt="Sulfate Attack - Synthetic Image" width="300"></td>
+    </tr>
+    <tr>
+      <td align="center">Real Image</td>
+      <td align="center">Segmented Image</td>
+      <td align="center">Synthetic Image</td>
+    </tr>
+  </table>
 
 #### Residual Strength Calculation for Dataset Labeling
 
 To label the images in the dataset and quantify the extent of chemical degradation, we calculate the residual strength of concrete affected by various reagents (HCl, NaCl, H₂SO₄, and MgSO₄). This method, adapted from *“Colour-stability analysis for estimation of deterioration in concrete due to chemical attack”* by Banerjee et al. (Construction and Building Materials, 2022), involves converting RGB pixel values from segmented images to the CIE-LAB color space and using polynomial equations to estimate residual strength. The process is as follows:
 
 1. **Color Space Conversion**:
-   - RGB values of segmented pixels are converted to CIE-XYZ using the following equations:
-     \[
-     X = 0.41245 \cdot R + 0.35758 \cdot G + 0.18042 \cdot B
-     \]
-     \[
-     Y = 0.21267 \cdot R + 0.71516 \cdot G + 0.07217 \cdot B
-     \]
-     \[
-     Z = 0.01933 \cdot R + 0.11919 \cdot G + 0.95023 \cdot B
-     \]
-     where \( R \), \( G \), and \( B \) are normalized to the range [0, 1].
-   - CIE-XYZ values are then converted to CIE-LAB using reference white point values (\( X_0 = 94.811 \), \( Y_0 = 100 \), \( Z_0 = 1017.304 \)):
-     \[
-     L^* = 116 \left( \frac{Y}{Y_0} \right)^{1/3} - 16 \quad \text{if} \quad \frac{Y}{Y_0} > 0.008856, \quad \text{else} \quad 903.3 \cdot \frac{Y}{Y_0}
-     \]
-     \[
-     a^* = 500 \left( \left( \frac{X}{X_0} \right)^{1/3} - \left( \frac{Y}{Y_0} \right)^{1/3} \right)
-     \]
-     \[
-     b^* = 200 \left( \left( \frac{Y}{Y_0} \right)^{1/3} - \left( \frac{Z}{Z_0} \right)^{1/3} \right)
-     \]
+   - RGB to CIE-XYZ, with \( R \), \( G \), \( B \) normalized to [0, 1]:
+     - **X (RGB to CIE-XYZ)**:  
+       \[
+       X = 0.41245 * R + 0.35758 * G + 0.18042 * B
+       \]
+     - **Y (RGB to CIE-XYZ)**:  
+       \[
+       Y = 0.21267 * R + 0.71516 * G + 0.07217 * B
+       \]
+     - **Z (RGB to CIE-XYZ)**:  
+       \[
+       Z = 0.01933 * R + 0.11919 * G + 0.95023 * B
+       \]
+   - CIE-XYZ to CIE-LAB, using reference white points \( X_0 = 94.811 \), \( Y_0 = 100 \), \( Z_0 = 1017.304 \):
+     - **\( L^* \) (CIE-XYZ to CIE-LAB)**:  
+       \[
+       L^* = 116 * (Y/Y_0)^(1/3) - 16
+       \]
+     - **\( a^* \) (CIE-XYZ to CIE-LAB)**:  
+       \[
+       a^* = 500 * ((X/X_0)^(1/3) - (Y/Y_0)^(1/3))
+       \]
+     - **\( b^* \) (CIE-XYZ to CIE-LAB)**:  
+       \[
+       b^* = 200 * ((Y/Y_0)^(1/3) - (Z/Z_0)^(1/3))
+       \]
 
 2. **Residual Strength Calculation**:
    - Residual strength is calculated for each pixel using \( L^* \) (for HCl) or \( b^* \) (for NaCl, H₂SO₄, MgSO₄) with the following polynomial equations:
@@ -154,7 +171,6 @@ To label the images in the dataset and quantify the extent of chemical degradati
        y = -4.0564x^4 + 55.836x^3 - 262.76x^2 + 507.92x - 304.49
        \]
    - The strength values are in MPa (Megapascals), with a minimum of 0 to ensure physical validity. The average residual strength for each reagent is computed across all pixels in the segmented region of an image.
-
 3. **Dataset Labeling**:
    - The calculated average residual strengths (for HCl, NaCl, H₂SO₄, and MgSO₄) are stored in a CSV file along with the average \( L^* \) and \( b^* \) values for each image. This data is used to label images based on the severity of degradation, enabling the deep learning model to classify and predict concrete deterioration levels.
 
