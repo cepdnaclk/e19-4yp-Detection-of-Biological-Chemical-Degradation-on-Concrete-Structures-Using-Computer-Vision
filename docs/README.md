@@ -89,7 +89,76 @@ The research methodology for developing a deep learning-based system for detecti
 <p align="center"><b>Methodology Workflow:</b> Synthetic Data Integration, Deep Learning Optimization, and Multi-Metric Evaluation Framework</p>
 
 ### Data Collection
-Data collection is a crucial step in the methodology, as the quality and diversity of data directly influence the performance of deep learning models. The research begins by gathering real-world images from infrastructure sites, such as bridges, highways, and industrial buildings, where concrete degradation is common. Since existing datasets primarily focus on mechanical damage like cracks and spalling, there is a significant gap in datasets that include biological (e.g., algae, fungi) and chemical (e.g., sulfate attack, carbonation) degradation. To fill this gap, synthetic data generation techniques are employed to augment the dataset, allowing for a broader representation of degradation types. Additionally, multimodal imaging techniques are employed, including RGB imaging and thermal imaging, which are crucial for capturing detailed information on surface textures and temperature variations of the concrete surface, respectively.
+
+Data collection is a crucial step in the methodology, as the quality and diversity of data directly influence the performance of deep learning models. The research begins by gathering real-world images from infrastructure sites, such as bridges, highways, and industrial buildings, where concrete degradation is common. To address the gap in existing datasets, which primarily focus on mechanical damage like cracks and spalling, we collected real images of concrete affected by chemical degradation, specifically chloride and sulfate attacks. Additionally, we generated synthetic images for both chloride and sulfate attacks to augment the dataset, ensuring a broader representation of these degradation types. Segmentation was also performed on the real images to isolate affected areas, aiding in model training and analysis. Multimodal imaging techniques, including RGB imaging and thermal imaging, were employed to capture detailed information on surface textures and temperature variations of the concrete surface, respectively. Below are sample images showcasing real, segmented, and synthetic data for chloride and sulfate attacks:
+
+- **Chloride Attack Samples**:
+  - Real Image:  
+    ![Chloride Attack - Real Image](images/chloride_real_image.jpg)  
+  - Segmented Image:  
+    ![Chloride Attack - Segmented Image](images/chloride_segmented_image.jpg)  
+  - Synthetic Image:  
+    ![Chloride Attack - Synthetic Image](docs/images/chloride_synthetic_image.PNG)  
+
+- **Sulfate Attack Samples**:
+  - Real Image:  
+    ![Sulfate Attack - Real Image](images/sulphate_real_image.jpg)  
+  - Segmented Image:  
+    ![Sulfate Attack - Segmented Image](images/sulphate_segmented_image.jpg)  
+  - Synthetic Image:  
+    ![Sulfate Attack - Synthetic Image](docs/images/sulphate_synthetic_image.png)
+
+#### Residual Strength Calculation for Dataset Labeling
+
+To label the images in the dataset and quantify the extent of chemical degradation, we calculate the residual strength of concrete affected by various reagents (HCl, NaCl, H₂SO₄, and MgSO₄). This method, adapted from *“Colour-stability analysis for estimation of deterioration in concrete due to chemical attack”* by Banerjee et al. (Construction and Building Materials, 2022), involves converting RGB pixel values from segmented images to the CIE-LAB color space and using polynomial equations to estimate residual strength. The process is as follows:
+
+1. **Color Space Conversion**:
+   - RGB values of segmented pixels are converted to CIE-XYZ using the following equations:
+     \[
+     X = 0.41245 \cdot R + 0.35758 \cdot G + 0.18042 \cdot B
+     \]
+     \[
+     Y = 0.21267 \cdot R + 0.71516 \cdot G + 0.07217 \cdot B
+     \]
+     \[
+     Z = 0.01933 \cdot R + 0.11919 \cdot G + 0.95023 \cdot B
+     \]
+     where \( R \), \( G \), and \( B \) are normalized to the range [0, 1].
+   - CIE-XYZ values are then converted to CIE-LAB using reference white point values (\( X_0 = 94.811 \), \( Y_0 = 100 \), \( Z_0 = 1017.304 \)):
+     \[
+     L^* = 116 \left( \frac{Y}{Y_0} \right)^{1/3} - 16 \quad \text{if} \quad \frac{Y}{Y_0} > 0.008856, \quad \text{else} \quad 903.3 \cdot \frac{Y}{Y_0}
+     \]
+     \[
+     a^* = 500 \left( \left( \frac{X}{X_0} \right)^{1/3} - \left( \frac{Y}{Y_0} \right)^{1/3} \right)
+     \]
+     \[
+     b^* = 200 \left( \left( \frac{Y}{Y_0} \right)^{1/3} - \left( \frac{Z}{Z_0} \right)^{1/3} \right)
+     \]
+
+2. **Residual Strength Calculation**:
+   - Residual strength is calculated for each pixel using \( L^* \) (for HCl) or \( b^* \) (for NaCl, H₂SO₄, MgSO₄) with the following polynomial equations:
+     - **HCl (using \( L^* \))**:  
+       \[
+       y = -0.0051x^3 + 0.8722x^2 - 49.307x + 946.72
+       \]
+     - **NaCl (using \( b^* \))**:  
+       \[
+       y = -0.0183x^3 + 0.4962x^2 - 3.6565x + 43.551
+       \]
+     - **H₂SO₄ (using \( b^* \))**:  
+       \[
+       y = 0.0636x^3 - 1.2906x^2 + 6.1804x + 31.701
+       \]
+     - **MgSO₄ (using \( b^* \))**:  
+       \[
+       y = -4.0564x^4 + 55.836x^3 - 262.76x^2 + 507.92x - 304.49
+       \]
+   - The strength values are in MPa (Megapascals), with a minimum of 0 to ensure physical validity. The average residual strength for each reagent is computed across all pixels in the segmented region of an image.
+
+3. **Dataset Labeling**:
+   - The calculated average residual strengths (for HCl, NaCl, H₂SO₄, and MgSO₄) are stored in a CSV file along with the average \( L^* \) and \( b^* \) values for each image. This data is used to label images based on the severity of degradation, enabling the deep learning model to classify and predict concrete deterioration levels.
+
+This approach ensures that the dataset captures both visual and quantitative aspects of chemical degradation, enhancing the model's ability to detect and assess concrete damage in real-world scenarios.
 
 ### Data Pre-processing and Annotation
 After data collection, the images undergo pre-processing to improve their quality and make them suitable for deep learning. This step includes noise reduction, contrast enhancement, and normalization of images to address inconsistencies that might affect model performance. The pre-processing ensures that the images are clear and of consistent quality across the dataset. Following pre-processing, expert annotations are carried out to label images according to the type of degradation (e.g., microbial growth, chemical attack). Additionally, image segmentation techniques are applied to segment out areas of degradation, allowing the model to focus on these regions during training. This segmentation is crucial for tasks that involve detecting localized degradation patterns, as it helps the model differentiate between degraded and non-degraded areas on the concrete surface.
