@@ -19,6 +19,7 @@ title:
 
 #### Supervisors
 
+- Dr. Upul Jayasinghe, [email](mailto:upuljm@eng.pdn.ac.lk )
 - Ms.Yasodha Vimukthi, [email](mailto:yasodhav@eng.pdn.ac.lk)
 - Dr. J. A. S. C. Jayasinghe, [email](mailto:supunj@eng.pdn.ac.lk )
 
