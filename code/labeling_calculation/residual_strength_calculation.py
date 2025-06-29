@@ -1,4 +1,4 @@
-# final calculation for residual strength of all kind of attack
+# final calculation for residual strength of all kind of attack v2
 import cv2
 import numpy as np
 import pandas as pd
@@ -10,15 +10,19 @@ from google.colab import drive
 drive.mount('/content/drive')
 
 # Step 2: Define Paths
-segmented_save_dir = '/content/drive/MyDrive/Research/Research dataset/Sulphate attack/segmented_white_only'  # Segmented images
-csv_save_path = '/content/drive/MyDrive/Research/Research dataset/Sulphate attack/all_strength_data_corrected.csv'
+#/content/drive/MyDrive/Research/Research dataset/Final_Dataset/choliride attack/choliride attack segmented
+#/content/drive/MyDrive/Research/Research dataset/Final_Dataset/choliride attack/chloride_attack_data_v2.csv
+#/content/drive/MyDrive/Research/Research dataset/Final_Dataset/Sulphate attack/sulphate_segmented
+#/content/drive/MyDrive/Research/Research dataset/Final_Dataset/Sulphate attack/sulphate_attack_data_V2.csv
+segmented_save_dir = '/content/drive/MyDrive/Research/Research dataset/Final_Dataset/Sulphate attack/sulphate_segmented'
+csv_save_path = '/content/drive/MyDrive/Research/Research dataset/Final_Dataset/Sulphate attack/sulphate_attack_data_V2.csv'
 
 # Step 3: Fetch segmented image paths
 image_paths = glob.glob(os.path.join(segmented_save_dir, '*'))
 image_paths = [p for p in image_paths if p.lower().endswith(('.jpg', '.jpeg', '.png'))]
 print(f"Found {len(image_paths)} segmented images.")
 
-# Step 4: Define Functions
+# Step 4: Define Color Conversion and Strength Calculation Functions
 def rgb_to_xyz(r, g, b):
     """Convert RGB to CIE-XYZ."""
     r, g, b = r / 255.0, g / 255.0, b / 255.0
@@ -28,7 +32,7 @@ def rgb_to_xyz(r, g, b):
     return x, y, z
 
 def xyz_to_lab(x, y, z, x0=94.811, y0=100, z0=1017.304):
-    """Convert CIE-XYZ to CIE-LAB with updated Y0, Z0."""
+    """Convert CIE-XYZ to CIE-LAB with updated white reference values."""
     x, y, z = x / x0, y / y0, z / z0
     x = x ** (1/3) if x > 0.008856 else (7.787 * x + 16/116)
     y = y ** (1/3) if y > 0.008856 else (7.787 * y + 16/116)
@@ -39,19 +43,15 @@ def xyz_to_lab(x, y, z, x0=94.811, y0=100, z0=1017.304):
     return l, a, b
 
 def calculate_residual_strength(l, b, reagent):
-    """Calculate residual strength based on reagent using corrected polynomial models."""
+    """Calculate residual strength based on reagent using polynomial models."""
     if reagent == 'HCl':
-        # y = -0.0051x^3 + 0.8722x^2 - 49.307x + 946.72
-        return max(0, -0.0051 * l**3 + 0.8722 * l**2 - 49.307 * l + 946.72)
+        return max(0, 0.0083 * b**2 - 0.9127 * b + 39.311)
     elif reagent == 'NaCl':
-        # y = -0.0183x^3 + 0.4962x^2 - 3.6565x + 43.551
         return max(0, -0.0183 * b**3 + 0.4962 * b**2 - 3.6565 * b + 43.551)
     elif reagent == 'H2SO4':
-        # y = 0.0636x^3 - 1.2906x^2 + 6.1804x + 31.701
         return max(0, 0.0636 * b**3 - 1.2906 * b**2 + 6.1804 * b + 31.701)
     else:  # MgSO4
-        # y = -4.0564x^4 + 55.836x^3 - 262.76x^2 + 507.92x - 304.49
-        return max(0, -4.0564 * b**4 + 55.836 * b**3 - 262.76 * b**2 + 507.92 * b - 304.49)
+        return max(0, 0.116 * b**3 - 1.446 * b**2 + 5.336 * b + 32.897)
 
 # Step 5: Process All Images
 data = []
@@ -67,11 +67,11 @@ for image_path in image_paths:
         continue
 
     segmented_rgb = cv2.cvtColor(segmented_rgb, cv2.COLOR_BGR2RGB)
+
     # Create mask from non-zero pixels
     mask = np.any(segmented_rgb > 0, axis=2)
-
-    # Process each pixel in the masked region
     valid_pixels = segmented_rgb[mask]
+
     if len(valid_pixels) == 0:
         print(f" - No valid pixels in {image_name}, skipping calculations.")
         continue
@@ -90,7 +90,7 @@ for image_path in image_paths:
         strengths_h2so4.append(calculate_residual_strength(l, b_val, 'H2SO4'))
         strengths_mgso4.append(calculate_residual_strength(l, b_val, 'MgSO4'))
 
-    # Calculate averages
+    # Calculate average values
     avg_l = np.mean(l_values)
     avg_b = np.mean(b_values)
     avg_strength_hcl = np.mean(strengths_hcl)
@@ -105,6 +105,17 @@ for image_path in image_paths:
     print(f" - Average H2SO4 Strength: {avg_strength_h2so4:.2f}")
     print(f" - Average MgSO4 Strength: {avg_strength_mgso4:.2f}")
 
+    # Skip image if any strength is zero
+    if 0 in [avg_strength_hcl, avg_strength_nacl, avg_strength_h2so4, avg_strength_mgso4]:
+        print(f" - Skipping {image_name} due to zero residual strength in one or more reagents.")
+        continue
+
+    # 🚫 Skip image if MgSO4 strength is greater than 75
+    if avg_strength_mgso4 > 75:
+        print(f" - Skipping {image_name} due to MgSO4 residual strength > 75.")
+        continue
+
+    # Store the result for valid image
     data.append({
         'Image_Name': image_name,
         'Average_L*': avg_l,
@@ -115,7 +126,7 @@ for image_path in image_paths:
         'Residual_Strength_MgSO4': avg_strength_mgso4
     })
 
-# Step 6: Save Results
+# Step 6: Save Results to CSV
 df = pd.DataFrame(data)
 df.to_csv(csv_save_path, index=False)
 print(f"✅ Data saved to {csv_save_path}")
