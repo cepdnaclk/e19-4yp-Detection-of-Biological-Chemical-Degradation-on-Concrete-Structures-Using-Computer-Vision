@@ -2,7 +2,7 @@ import os
 import re
 
 # Configuration
-image_folder = './data/Sulphate attack/sulphate_segmented/'   # Adjust to your image folder
+image_folder = './docs/images/Sulphate attack/'   # Adjust to your image folder
 offset = 400
 
 # Go through all files in the folder
