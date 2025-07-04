@@ -110,7 +110,7 @@ for image_path in image_paths:
         print(f" - Skipping {image_name} due to zero residual strength in one or more reagents.")
         continue
 
-    # 🚫 Skip image if MgSO4 strength is greater than 75
+    # Skip image if MgSO4 strength is greater than 75
     if avg_strength_mgso4 > 75:
         print(f" - Skipping {image_name} due to MgSO4 residual strength > 75.")
         continue

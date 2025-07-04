@@ -3,7 +3,7 @@ from tensorflow.keras import layers, models
 from sklearn.model_selection import train_test_split
 from common.utils import load_and_clean_csv, load_data, normalize_targets, plot_results, plot_mae_history
 
-df = load_and_clean_csv('data/merged.csv')
+df = load_and_clean_csv('data/combined_attack_data.csv')
 X_img, X_attack, y = load_data(df, image_dir='data/segmented_images/')
 y_scaled, scaler = normalize_targets(y)
 

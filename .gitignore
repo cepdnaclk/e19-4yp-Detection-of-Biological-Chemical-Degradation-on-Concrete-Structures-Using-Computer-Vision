@@ -1,0 +1,6 @@
+# Ignore all .h5 model files
+*.h5
+
+#Ignore tuner logs and saved models folders
+saved_models/
+tuner_logs/

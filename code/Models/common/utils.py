@@ -22,7 +22,7 @@ def load_data(df, image_dir, img_size=(224, 224)):
             img = load_img(img_path, target_size=img_size)
             img = img_to_array(img) / 255.0
             X_img.append(img)
-            X_attack.append(row['type_of_attack'])
+            X_attack.append(row['Attack_Type'])
             y.append([row[col] for col in regression_cols])
     return np.array(X_img), np.array(X_attack).reshape(-1, 1), np.array(y, dtype=np.float32)
 
@@ -78,3 +78,9 @@ def plot_mae_history(history, model_name="Model"):
     plt.grid(True)
     plt.tight_layout()
     plt.show()
+
+def preprocess_image(img_path, target_size=(224, 224)):
+    from tensorflow.keras.preprocessing.image import load_img, img_to_array
+    img = load_img(img_path, target_size=target_size)
+    img = img_to_array(img) / 255.0
+    return img
