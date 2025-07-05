@@ -1,6 +1,12 @@
 # Ignore all .h5 model files
 *.h5
 
+# Ignore all .pkl files
+*.pkl
+
+# Ignore all .pt files
+*.pt
+
 #Ignore tuner logs and saved models folders
 saved_models/
 tuner_logs/
