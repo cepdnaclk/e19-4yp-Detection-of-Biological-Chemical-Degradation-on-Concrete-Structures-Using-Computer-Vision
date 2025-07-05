@@ -9,7 +9,7 @@ class_names = ['bio-degradation','chloride-attack', 'sulphate-attack']
 
 # Load model
 model = timm.create_model(model_name, pretrained=False, num_classes=3)
-model.load_state_dict(torch.load(f"best_{model_name}_seed42.pt"))
+model.load_state_dict(torch.load(f"../saved_models/best_{model_name}_seed42.pt"))
 model.eval()
 
 # Preprocess
