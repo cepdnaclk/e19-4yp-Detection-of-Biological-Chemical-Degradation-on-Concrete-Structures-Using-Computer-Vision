@@ -1,69 +1,81 @@
 import os
-import numpy as np
-import cv2
-from tensorflow.keras.preprocessing.image import img_to_array
+from tkinter import Tk, filedialog
 
-# === Import segmentation modules ===
-from image_segmentation.chloride_segmentation import segment_chloride_image
-from image_segmentation.sulphate_segmentation import segment_sulphate_image
+# Image segmentation
+from image_segmentation.chloride_segmentation import segment_chloride_image, save_segmented_image as save_chloride_image
+from image_segmentation.sulphate_segmentation import segment_sulphate_image, save_segmented_image as save_sulphate_image
 
-# === Import classification and regression modules ===
-from Models.classification_model.classification import load_classification_model, classify_image
-from Models.predict import load_regression_model, predict
+# Classification
+from Models.classification_model.classify import load_classification_model, classify_image
 
-# === Convert RGB image to model input format ===
-def prepare_for_densenet(np_image):
-    image = cv2.resize(np_image, (224, 224)) / 255.0
-    return img_to_array(image)
+# Prediction
+from Models.predict import predict_residual_strength
 
-# === Main Pipeline ===
+
+def choose_image():
+    """Open file dialog to choose an image."""
+    root = Tk()
+    root.withdraw()
+    file_path = filedialog.askopenfilename(
+        title="Select an image", filetypes=[("Image files", "*.jpg *.png *.jpeg")]
+    )
+    return file_path
+
+
 def main():
-    img_path = input("📂 Enter full path to image: ").strip()
-    if not os.path.exists(img_path):
-        print("Image path does not exist.")
+    print("===== Concrete Degradation Detection Pipeline =====")
+    image_path = choose_image()
+
+    if not image_path:
+        print("No image selected. Exiting.")
         return
 
-    #Load classification model and classify
-    print("\n🔍 Classifying image...")
-    clf_model = load_classification_model()
-    pred_class = classify_image(clf_model, img_path)
-    print(f"🧠 Predicted Class: {pred_class}")
+    print(f"Selected image: {image_path}")
 
-    #If biological, exit early
-    if pred_class == "bio-degradation":
-        print("Biological degradation detected.")
+    # Load classifier
+    print("Loading classification model...")
+    model = load_classification_model()
+
+    # Predict class
+    predicted_class = classify_image(model, image_path)
+    print(f"Predicted class: {predicted_class}")
+
+    if predicted_class == 'bio-degradation':
+        print("Final Output: Biological degradation detected.")
         return
 
-    # Segment based on class
-    print("Segmenting image...")
-    if pred_class == "chloride-attack":
-        segmented_img = segment_chloride_image(img_path)
-        attack_type = 0
-    elif pred_class == "sulphate-attack":
-        segmented_img = segment_sulphate_image(img_path)
-        attack_type = 1
-    else:
-        print("Unknown degradation type for segmentation.")
-        return
+    # Create output directory
+    output_dir = os.path.join("segmented_outputs")
+    os.makedirs(output_dir, exist_ok=True)
 
-    if segmented_img is None:
-        print("Segmentation failed.")
-        return
+    if predicted_class == 'chloride-attack':
+        segmented = segment_chloride_image(image_path)
+        if segmented is None:
+            print("Segmentation failed.")
+            return
 
-    #Predict using regression model
-    print("⚙️ Predicting residual strength...")
-    image_array = prepare_for_densenet(segmented_img)
-    reg_model, scaler = load_regression_model()
-    residuals = predict(reg_model, scaler, image_array, attack_type)
+        segmented_path = os.path.join(output_dir, "chloride_segmented.png")
+        save_chloride_image(segmented, segmented_path)
+        print(f"Chloride segmentation saved at: {segmented_path}")
 
-    #Final Output
-    print("\n🎯 Final Output:")
-    print(f"Class: {pred_class}")
-    print(f"Predicted Residual Strengths:")
-    print(f"    NaCl   : {residuals[0]:.2f}")
-    print(f"    HCl    : {residuals[1]:.2f}")
-    print(f"    H2SO4  : {residuals[2]:.2f}")
-    print(f"    MgSO4  : {residuals[3]:.2f}")
+        print("Predicting residual strength...")
+        result = predict_residual_strength(segmented_path, attack_type=0)
+        print("Predicted Residual Strengths (NaCl, HCl, H2SO4, MgSO4):", result)
+
+    elif predicted_class == 'sulphate-attack':
+        segmented = segment_sulphate_image(image_path)
+        if segmented is None:
+            print("Segmentation failed.")
+            return
+
+        segmented_path = os.path.join(output_dir, "sulphate_segmented.png")
+        save_sulphate_image(segmented, segmented_path)
+        print(f"Sulphate segmentation saved at: {segmented_path}")
+
+        print("Predicting residual strength...")
+        result = predict_residual_strength(segmented_path, attack_type=1)
+        print("Predicted Residual Strengths (NaCl, HCl, H2SO4, MgSO4):", result)
+
 
 if __name__ == "__main__":
     main()

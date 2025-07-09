@@ -83,4 +83,4 @@ def preprocess_image(img_path, target_size=(224, 224)):
     from tensorflow.keras.preprocessing.image import load_img, img_to_array
     img = load_img(img_path, target_size=target_size)
     img = img_to_array(img) / 255.0
-    return img
+    return img 
