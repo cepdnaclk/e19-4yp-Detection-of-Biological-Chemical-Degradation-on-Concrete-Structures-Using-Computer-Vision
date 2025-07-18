@@ -6,7 +6,7 @@ import timm
 
 CLASS_NAMES = ['bio-degradation', 'chloride-attack', 'sulphate-attack']
 
-def load_classification_model(model_name="swinv2_small_window16_256"): 
+def load_classification_model(model_name="convnextv2_tiny"): 
     model_path = os.path.abspath(
         os.path.join(os.path.dirname(__file__), '..', 'saved_models', f"best_{model_name}_seed42.pt")
     )
