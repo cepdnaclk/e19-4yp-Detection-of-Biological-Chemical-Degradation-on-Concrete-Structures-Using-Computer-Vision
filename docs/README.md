@@ -169,7 +169,7 @@ To label the images in the dataset and quantify the extent of chemical degradati
        \]
      - **MgSO₄ (using \( b^* \))**:  
        \[
-       y = -4.0564x^4 + 55.836x^3 - 262.76x^2 + 507.92x - 304.49
+       y = 0.116 x^3 - 1.446x^2 + 5.336x + 32.897
        \]
    - The strength values are in MPa (Megapascals), with a minimum of 0 to ensure physical validity. The average residual strength for each reagent is computed across all pixels in the segmented region of an image.
 3. **Dataset Labeling**:
